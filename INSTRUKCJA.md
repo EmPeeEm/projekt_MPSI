@@ -1,6 +1,6 @@
 # 🛠️ Instrukcja Uruchomienia Projektu Lokalnie
 
-Niniejsza instrukcja krok po kroku opisuje proces przygotowania środowiska lokalnego oraz uruchomienia kodu i notebooków Jupyter w celu reprodukcji wyników modelowania tematów.
+Niniejsza instrukcja krok po kroku opisuje proces przygotowania środowiska lokalnego, instalacji zależności, uruchomienia eksperymentów w Jupyter Notebook oraz startu interaktywnej aplikacji Streamlit.
 
 ---
 
@@ -52,7 +52,7 @@ Po prawidłowej aktywacji na początku linii poleceń w terminalu powinieneś zo
 ---
 
 ### Krok 3: Instalacja zależności
-Zaktualizuj menedżer pakietów `pip`, a następnie zainstaluj wszystkie wymagane biblioteki zdefiniowane w pliku `requirements.txt`:
+Zaktualizuj menedżer pakietów `pip`, a następnie zainstaluj wszystkie wymagane biblioteki (`numpy`, `pandas`, `scikit-learn`, `matplotlib`, `streamlit`, `notebook`):
 
 ```bash
 pip install --upgrade pip
@@ -61,26 +61,26 @@ pip install -r requirements.txt
 
 ---
 
-### Krok 4: Pobranie modeli lingwistycznych (opcjonalnie)
-Jeżeli w projekcie do lematyzacji wykorzystywane są dodatkowe zasoby biblioteki `nltk` lub model językowy `spaCy`, należy je jednorazowo pobrać:
+## 📓 Uruchomienie Jupyter Notebook (Raporty i Eksperymenty)
 
-```bash
-# Dla NLTK (przykładowo stop words i punktuatory):
-python -c "import nltk; nltk.download('stopwords'); nltk.download('punkt')"
-
-# Dla spaCy (jeśli używany jest model angielski en_core_web_sm):
-python -m spacy download en_core_web_sm
-```
-
----
-
-### Krok 5: Uruchomienie Jupyter Notebook
-Po pomyślnej instalacji pakietów możesz uruchomić serwer Jupyter Notebook:
+Aby przeglądać i uruchamiać notebooki z eksperymentami, uruchom serwer Jupyter:
 
 ```bash
 jupyter notebook
 ```
 
-Po uruchomieniu tego polecenia w przeglądarce automatycznie otworzy się panel Jupyter. Przejdź do folderu `notebooks/` i otwórz w odpowiedniej kolejności:
-1. 📓 [01_preprocessing_i_tfidf.ipynb](notebooks/01_preprocessing_i_tfidf.ipynb) — w celu zapoznania się z pipeline przygotowania danych.
-2. 📓 [02_kmeans_i_tsne.ipynb](notebooks/02_kmeans_i_tsne.ipynb) — w celu uruchomienia klasteryzacji i analizy wyników.
+W przeglądarce otworzy się panel Jupyter. Przejdź do folderu `notebooks/` i uruchom:
+1. 📓 [01_preprocessing_i_tfidf.ipynb](notebooks/01_preprocessing_i_tfidf.ipynb) — w celu weryfikacji pipeline'u czyszczenia danych i wektoryzacji.
+2. 📓 [02_kmeans_i_tsne.ipynb](notebooks/02_kmeans_i_tsne.ipynb) — w celu uruchomienia samodzielnej implementacji k-means, analizy doboru klastrów, redukcji t-SNE i zapoznania się z analizą ograniczeń.
+
+---
+
+## 🖥️ Uruchomienie Aplikacji Streamlit (Interaktywny Dashboard)
+
+Projekt oferuje interaktywny panel webowy do wizualizacji wyników i dokumentów w czasie rzeczywistym. Aby go uruchomić, wpisz w terminalu:
+
+```bash
+streamlit run app.py
+```
+
+Aplikacja otworzy się automatycznie w przeglądarce pod adresem `http://localhost:8501`. Umożliwia ona dynamiczne zmienianie liczby klastrów, przeglądanie "top słów" dla tematów oraz filtrowanie dokumentów.

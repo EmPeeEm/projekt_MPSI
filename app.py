@@ -3,6 +3,7 @@ import joblib
 import pandas as pd
 import plotly.express as px
 from sklearn.manifold import TSNE
+from sklearn.decomposition import TruncatedSVD
 import sys
 import os
 
@@ -22,9 +23,14 @@ def load_data():
 
 @st.cache_data
 def compute_tsne(_tfidf_matrix):
-    """Oblicza t-SNE raz i trzyma w pamięci. Nie zależy to od liczby klastrów."""
-    tsne = TSNE(n_components=2, perplexity=30, random_state=42, max_iter=1000)
-    return tsne.fit_transform(_tfidf_matrix.toarray())
+    """Wstępnie redukuje wymiary przez SVD, a następnie oblicza t-SNE."""
+    # 1. Wstępna redukcja z tysięcy do 50 wymiarów (pomija szum)
+    svd = TruncatedSVD(n_components=50, random_state=42)
+    tfidf_reduced = svd.fit_transform(_tfidf_matrix)
+    
+    # 2. Właściwa redukcja t-SNE do 2 wymiarów
+    tsne = TSNE(n_components=2, perplexity=30, random_state=42)
+    return tsne.fit_transform(tfidf_reduced)
 
 # --- GŁÓWNY INTERFEJS ---
 st.title("Wizualizacja Modelowania Tematów w NLP 🧠")

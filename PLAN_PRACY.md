@@ -48,19 +48,19 @@ Poniższa lista kontrolna określa kroki niezbędne do ukończenia projektu:
   - Stworzenie repozytorium Git i powiązanie z submodułami.
   - Przygotowanie struktury katalogów i plików dokumentacyjnych.
   - Stworzenie pliku `requirements.txt` z bazowymi bibliotekami oraz Streamlitem.
-- [ ] **Etap 2: Pipeline danych, TF-IDF i szkielet algorytmu (Osoba 1 & Osoba 2)**
+- [x] **Etap 2: Pipeline danych, TF-IDF i szkielet algorytmu (Osoba 1 & Osoba 2)**
   - Opracowanie modułu preprocessingu [text_prep.py](src/text_prep.py) (Osoba 1).
   - Przygotowanie wstępnej wersji wektoryzatora TF-IDF w notebooku [01_preprocessing_i_tfidf.ipynb](notebooks/01_preprocessing_i_tfidf.ipynb) (Osoba 1).
   - Napisanie szkieletu własnego algorytmu k-means w `src/kmeans.py` przy użyciu NumPy (Osoba 2).
-- [ ] **Etap 3: Testy k-means, analiza $k$ i interpretacja tematów**
+- [x] **Etap 3: Testy k-means, analiza $k$ i interpretacja tematów**
   - Uruchomienie własnej implementacji k-means na danych wejściowych (Osoba 2).
   - Przeprowadzenie eksperymentów z różnymi wartościami $k$ (metoda łokcia) (Osoba 2).
   - Ekstrakcja słów kluczowych dla każdego klastra i nadanie im interpretacji tematycznej (Osoba 1).
   - Porównanie metryk i zbieżności z wersją ze `scikit-learn` (Wspólnie).
-- [ ] **Etap 4: Wizualizacja t-SNE i budowa aplikacji Streamlit**
+- [x] **Etap 4: Wizualizacja t-SNE i budowa aplikacji Streamlit**
   - Wygenerowanie rzutowania t-SNE w notebooku [02_kmeans_i_tsne.ipynb](notebooks/02_kmeans_i_tsne.ipynb) w celu oceny rozdzielności klastrów (Osoba 2).
   - Stworzenie aplikacji [app.py](app.py) w Streamlit do interaktywnego przeglądania dokumentów w klastrach oraz dynamicznej prezentacji wykresów t-SNE (Osoba 2).
-- [ ] **Etap 5: Przygotowanie raportu i prezentacji końcowej**
+- [/] **Etap 5: Przygotowanie raportu i prezentacji końcowej**
   - Opracowanie sekcji o ograniczeniach algorytmów (np. problem lokalnych minimów w k-means, brak informacji o kolejności słów w TF-IDF, niestabilność t-SNE) oraz napotkanych wyzwaniach.
   - Ostateczna redakcja raportów w Jupyter Notebooks.
   - Podział slajdów i przygotowanie do obrony projektu.

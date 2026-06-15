@@ -70,6 +70,9 @@ class KMeans:
                 else:
                     prob = min_sq_dists / sum_sq_dists
                 
+                # Normalizacja prawdopodobieństw, aby zapobiec błędom float w rng.choice
+                prob = prob / np.sum(prob)
+                
                 next_idx = rng.choice(n_samples, p=prob)
                 centroids[i] = X[next_idx]
                 
@@ -95,6 +98,9 @@ class KMeans:
         if n_samples < self.n_clusters:
             raise ValueError("Liczba próbek (n_samples) nie może być mniejsza niż liczba klastrów (n_clusters).")
             
+        # Inicjalizacja generatora losowego do obsługi ewentualnych pustych klastrów
+        rng = np.random.default_rng(self.random_state)
+
         # Inicjalizacja centroidów
         self.cluster_centers_ = self._init_centroids(X)
         
@@ -121,7 +127,6 @@ class KMeans:
                     new_centers[j] = np.mean(members, axis=0)
                 else:
                     # Jeśli klaster jest pusty, losujemy nowy centroid ze zbioru danych
-                    rng = np.random.default_rng(self.random_state)
                     new_centers[j] = X[rng.choice(n_samples)]
             
             # KROK 3: Sprawdzenie warunku stopu (zbieżność)
@@ -144,6 +149,9 @@ class KMeans:
         """
         Predykcja klastrów dla nowych danych X.
         """
+        if self.cluster_centers_ is None:
+            raise ValueError("Model nie został jeszcze dopasowany. Uruchom metodę fit() przed wywołaniem predict().")
+
         if hasattr(X, "toarray"):
             X = X.toarray()
         else:
@@ -160,6 +168,9 @@ class KMeans:
         Transformacja danych do przestrzeni odległości od centroidów.
         Zwraca macierz o wymiarach (n_samples, n_clusters).
         """
+        if self.cluster_centers_ is None:
+            raise ValueError("Model nie został jeszcze dopasowany. Uruchom metodę fit() przed wywołaniem transform().")
+
         if hasattr(X, "toarray"):
             X = X.toarray()
         else:

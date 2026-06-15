@@ -77,8 +77,12 @@ fig = px.scatter(
     color_discrete_sequence=px.colors.qualitative.Safe
 )
 fig.update_traces(marker=dict(size=7, opacity=0.8, line=dict(width=1, color='DarkSlateGrey')))
-fig.update_layout(height=600)
-st.plotly_chart(fig, use_container_width=True)
+fig.update_yaxes(scaleanchor="x", scaleratio=1)
+fig.update_layout(
+    width=800,
+    height=600
+)
+st.plotly_chart(fig, use_container_width=False)
 
 # --- SŁOWA KLUCZOWE ---
 st.subheader("Najważniejsze słowa dla wyznaczonych tematów")

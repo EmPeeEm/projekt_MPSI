@@ -47,8 +47,14 @@ def preprocess_document(text):
     # 2. Tokenizacja (podział na słowa)
     tokens = word_tokenize(cleaned_text)
     
-    # 3. Inicjalizacja narzędzi NLTK
+    # 3. Inicjalizacja narzędzi NLTK i rozszerzenie o własne stop words
     stop_words = set(stopwords.words('english'))
+    custom_stop_words = {
+        'would', 'know', 'think', 'people', 'use', 'time', 'anyone', 
+        'please', 'thanks', 'mail', 'like', 'email', 'advance', 'get', 
+        'one', 'say', 'go', 'think', 'good', 'well', 'make', 'right', 'see'
+    }
+    stop_words.update(custom_stop_words)
     lemmatizer = WordNetLemmatizer()
     
     # 4. Filtracja stop words, lematyzacja i odrzucenie bardzo krótkich słów

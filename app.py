@@ -48,7 +48,7 @@ except FileNotFoundError:
 
 # --- PANEL BOCZNY (USTAWIENIA) ---
 st.sidebar.header("Parametry modelu")
-k_clusters = st.sidebar.slider("Wybierz liczbę tematów (k):", min_value=2, max_value=12, value=4)
+k_clusters = st.sidebar.slider("Wybierz liczbę tematów (k):", min_value=2, max_value=21, value=4)
 
 # --- OBLICZENIA ---
 with st.spinner('Trwa redukcja wymiarów t-SNE (to może chwilę potrwać za pierwszym razem)...'):
